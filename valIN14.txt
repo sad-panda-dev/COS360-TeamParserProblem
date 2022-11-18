@@ -1,0 +1,522 @@
+if {} <= { 1 } then
+   d @ s
+else
+   d U s
+endif
+$if {} = { 1 } then
+   d @ s
+else
+   d U s
+endif
+$
+if { 2 } <= { 1 } then
+   d \ s
+else
+   d (+) s
+endif
+$
+if { 1, 2 } <= { 1, 2 } then
+   d \ s
+else
+   d (+) s
+endif
+$
+
+if {} <= { 1 } then
+   {}
+else
+   CMP {}
+endif
+$
+
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+@
+if { 2 } = { 1 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+@
+if {} <= CMP{ 2, 3 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {1, 2 } <= CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+@
+if { 1 } = { 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {2, 3 } = { 3, 2 } then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+@
+if { 2, 3 } <= { 1, 2, 3, 4, 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+U
+if { 2 } = { 1 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+U
+if {} <= CMP{ 2, 3 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {1, 2 } <= CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+U
+if { 1 } = { 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {2, 3 } = { 3, 2 } then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+U
+if { 2, 3 } <= { 1, 2, 3, 4, 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+\
+if { 2 } = { 1 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+\
+if {} <= CMP{ 2, 3 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {1, 2 } <= CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+\
+if { 1 } = { 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {2, 3 } = { 3, 2 } then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+\
+if { 2, 3 } <= { 1, 2, 3, 4, 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 3, 4, 5 }
+endif
+(+)
+if { 2 } = { 1 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {} = CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 4, 5 }
+endif
+(+)
+if {} <= CMP{ 2, 3 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {1, 2 } <= CMP{} then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 4, 5 }
+endif
+(+)
+if { 1 } = { 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if {2, 3 } = { 3, 2 } then
+   { 0, 1, 2, 4}
+else
+   { 1, 2, 4, 5 }
+endif
+(+)
+if { 2, 3 } <= { 1, 2, 4, 5 } then
+   { 0, 4, 5 }
+else
+   { 3, 4 }
+endif
+$
+
+if  { } = CMP{} then
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } = CMP{} then
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } = CMP{} then
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } = CMP{} then
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } <=  CMP{} then
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } <=  CMP{} then
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } = { 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } <=  CMP{} then
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if { 1, 2, 3, 4 } <= { 1, 2, 3, 5 } then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+
+if  { } <=  CMP{} then
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         {}
+      else
+         { 1 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 2 }
+      else
+         { 3 }
+      endif
+   endif
+else
+
+   if { 1, 2, 3 } <= { 0, 1, 2, 3, 4 }  then
+
+      if CMP{ 1 } <= CMP{} then
+         { 4 }
+      else
+         { 5 }
+      endif
+   else
+      if CMP{ 1 } <= CMP{} then
+         { 6 }
+      else
+         { 7 }
+      endif
+   endif
+endif
+$
+

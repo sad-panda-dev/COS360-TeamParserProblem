@@ -1,0 +1,465 @@
+ - - -  let
+  f = {1,2,3};
+  g = f \ {1};
+  h = g U - q;
+in
+ h \    p
+endlet$
+
+- - -   - let
+  f = {1,2,3};
+  g = f \ {1};
+  h = g U - q;
+in
+ h \ - p
+endlet$
+
+- -  - let
+  f = {1,2,3};
+  g = f \ {1};
+  h = g U - q;
+in
+ h \ - p
+endlet$
+
+   if  a <= -a then b else p endif $
+  - - -if  -a <= a then a else -a endif $
+   if  a = b then a else b endif $
+  - - -if  c = c then CMP{} else {} endif $
+   let 
+   s = {1};
+   t = {1,2};
+   u = {2,3,4};
+in
+   u (+) (t @ s)
+endlet$
+ - let
+in 
+{1,2,3} U {2,3,4}
+endlet$
+  - - -if  {} = {} then {1} else x endif $
+   if  {} = CMP{} then x else {2} endif $
+    - - -let 
+      x = b U c;
+      y =  - let
+             z = x @ x;
+          in 
+             z \ (z \ z)
+          endlet;
+   in
+      y
+   endlet$
+   if  {} <= CMP{}
+then
+{}
+else
+{1}
+endif  $
+
+  - - -if  CMP{} <= {}
+then
+{}
+else
+{1}
+endif  $
+
+   if  {0} <= {0,1,23}
+then
+{}
+else
+{1}
+endif  $
+
+  - - -if  {0,1,23} <= {0}
+then
+{}
+else
+{1}
+endif  $
+
+
+   if  {} <= {}
+then
+{}
+else
+{1}
+endif  $
+
+  - - -if  CMP{} <= CMP{}
+then
+{}
+else
+{1}
+endif  $
+
+  - - - - if  {0,1,2,3,4} <= {0,1,2,3,4}
+then
+{}
+else
+{1}
+endif  $
+
+
+  - - -if  {} = CMP{}
+then
+{}
+else
+{1}
+endif  $
+
+  - - - - if  CMP{} = {}
+then
+{}
+else
+{1}
+endif  $
+
+ - if  {0} = {0,1,23}
+then
+{}
+else
+{1}
+endif  $
+
+  - - -  if  {0,1,23} = {0}
+then
+{}
+else
+{1}
+endif  $
+
+ - if  {} = {}
+then
+{}
+else
+{1}
+endif  $
+
+  - - - -   if  CMP{} = CMP{}
+then
+{}
+else
+{1}
+endif  $
+
+ - if  {0,1,2,3,4} = {0,1,2,3,4}
+then
+{}
+else
+{1}
+endif  $
+
+  - - -  if  a <= i
+then
+a
+else
+c
+endif  $
+
+ - if  i <= a
+then
+a
+else
+c
+endif  $
+
+  - - - -   if  b <= e
+then
+a
+else
+c
+endif  $
+
+ - if  e <= b
+then
+a
+else
+c
+endif  $
+
+  - - -  if  {} <= a
+then
+a
+else
+c
+endif  $
+
+ - if  i <= CMP{}
+then
+a
+else
+c
+endif  $
+
+  - - - -   if  -n <=  - - - n
+then
+a
+else
+c
+endif  $
+
+
+ - if  a = i
+then
+a
+else
+c
+endif  $
+
+  - - - -   if  i = a
+then
+a
+else
+c
+endif  $
+
+ - if  b = e
+then
+a
+else
+c
+endif  $
+  - - -  if  e = b
+then
+a
+else
+c
+endif  $
+
+ - if  a = {}
+then
+a
+else
+c
+endif  $
+
+  - - - -   if  i = i
+then
+a
+else
+c
+endif  $
+
+ - if   - - - n = -n
+then
+a
+else
+c
+endif  $
+
+
+  - - - -   if  
+{1,2,3,4} @ {1,3,4} U {5,6} \ {1,6} (+) {3,4,5}
+<=
+CMP{} \ {1,2,3} (+) {1,2,3} U CMP{} @ {}
+then
+-({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) CMP{2})
+else
+ - - - ({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) {2})
+endif $
+
+ - if  
+ - - - -  ({1,2,3,4} @ {1,3,4} U {5,6} \ {1,6} (+) {3,4,5})
+<=
+CMP{} \ {1,2,3} (+) {1,2} U CMP{} @ {}
+then
+-({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) CMP{2})
+else
+ - - - ({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) {2})
+endif $
+
+ - if  
+{1,2,3,4} @ {1,3,4} U {5,6} \ {1,6} (+) {3,4,5}
+=
+CMP{} \ {1,2,3} (+) {1,2,3} U CMP{} @ {}
+then
+ - - - -  ({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) CMP{2})
+else
+-({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) {2})
+endif $
+
+  - - -  if  
+{1,2,3,4} @ {1,3,4} U {5,6} \ {1,6} (+) {3,4,5}
+=
+-(CMP{} \ {1,2,3} (+) {1,2,3} U CMP{} @ {})
+then
+ - - - -  ({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) CMP{2})
+else
+-({1,2,6} @ CMP{} \ {1,3,4,5} U {0,6}(+) {2})
+endif $
+
+
+
+  - - -  if  {} <= CMP{}
+then
+     - if  a = {}
+
+    then
+    {}
+    else
+    {1}
+    endif 
+else
+      - - - -   if  b <= a
+    
+    then
+    {2}
+    else
+    {3}
+    endif 
+endif $
+
+ - if  {} <= CMP{}
+then
+      - - -  if  a = {1}
+
+    then
+    {}
+    else
+    {1}
+    endif 
+else
+     - if  b <= a
+    
+    then
+    {2}
+    else
+    {3}
+    endif 
+endif $
+
+  - - - -   if  {1} = CMP{1}
+then
+     - if  a <= b
+
+    then
+    {}
+    else
+    {1}
+    endif 
+else
+      - - -  if  a @ CMP{} = {} U c \ {1}    
+    then
+    {2}
+    else
+    {3}
+    endif 
+endif $
+
+ - if  {1} = CMP{} \ CMP{1}
+then
+      - - - -   if  a = {}
+
+    then
+    {}
+    else
+    {1}
+    endif 
+else
+     - if  b U c =  f \ {234} @ {1,2,234} (+) t
+    
+    then
+    {2}
+    else
+    {3}
+    endif 
+endif $
+
+
+  - - -  let
+  x = CMP{};
+  y = {1,2,3};
+ in
+  x \ y
+ endlet$
+
+
+ - let
+  x = {0,1,2};
+  y = {1,2,3};
+ in
+  x @ y
+ endlet$
+
+
+  - - - -   let
+  x = {0,1};
+  y = {2,3};
+ in
+  x U y
+ endlet$
+
+
+ - let
+  x = {0,1,2,3};
+  y = {2,3,4,5};
+ in
+  x (+) y
+ endlet$
+
+
+
+  - - -  let
+   w = {};
+in
+    - let
+      x = w;
+   in
+        - - - -   let 
+         y = x;
+      in
+          - let
+            z = y;
+         in
+            z
+         endlet
+      endlet
+   endlet
+endlet$
+
+
+  - - -  let
+   w = {};
+in
+    - let
+      x = {0,1};
+   in
+        - - - -   let 
+         y = {0,1,2};
+      in
+          - let
+            z = {0,1,2,3};
+         in
+            z \ y (+) x U w @ CMP{}
+         endlet
+      endlet
+   endlet
+endlet$
+
+  - - -  let
+   x = {};
+   x = {1} @ x U {1};
+   x = CMP{} \ x;
+   x = -x;
+   x = x U {2,3,4};
+   x = x @ {2,3};
+   x = x (+) CMP{2,3};
+in
+   x
+endlet$
+
+  - - - -   let
+   x = {};
+in
+    - let
+      y = x;
+   in
+        - - -  let
+         y = -x;
+         z = x (+) y;
+      in
+         z U z
+      endlet
+   endlet
+endlet$
+

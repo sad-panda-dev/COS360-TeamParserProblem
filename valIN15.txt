@@ -1,0 +1,302 @@
+let in {} endlet$
+let in {0} endlet$
+let in CMP{} endlet$
+let in CMP{0} endlet$
+let in {0} U {1} endlet$
+let in {0,1,2} @ {1,2,3} endlet$
+let in {0,1,2} (+) {1,2,3} endlet$
+let in {0,1,2} \ {1,2,3} endlet$
+let in -CMP{1,2}  endlet$
+let x = {}; in x endlet$
+let x = {0}; in x endlet$
+let x = CMP{}; in x endlet$
+let x = CMP{0}; in x endlet$
+let x = CMP{0}; in -x endlet$
+let x = {0}; in x U {1} endlet$
+let x = {1,2,3}; in {0,1,2} @ x  endlet$
+let x = {0,1,2}; in x (+) {1,2,3} endlet$
+let x = {1,2,3}; y = {0,1,2}; in y \ x endlet$
+let x = {0}; y = {1}; in x U y endlet$
+let x = {1,2,3}; y = {0,1,2}; in y @ x  endlet$
+let x = {0,1,2}; y = {1,2,3}; in x (+) y endlet$
+let x = {1,2,3}; y = {0,1,2}; in y \ x endlet$
+let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in u endlet$
+let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in
+  if v = w then {1} else {2} endif endlet $
+let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in  if z <= u then {1} else {2} endif endlet$
+let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in  if v @ w  = {} then {1} else {2} endif endlet$
+let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in  if y <= x then {1} else {2} endif endlet$
+{ 0  }  U  (let in {} endlet)$
+{ 0,1  }  \  (let in {0} endlet)$
+{ 0,1,2  }  @  (let in CMP{} endlet)$
+{ 0,1,2,3  }  (+)  (let in CMP{0} endlet)$
+{ 0,1,2,3,4  }  U  (let in {0} U {1} endlet)$
+{ 0,1,2,3,4,5}  @  (let in {0,1,2} @ {1,2,3} endlet)$
+{ 6  }  \  (let in {0,1,2} (+) {1,2,3} endlet)$
+{ 6,7  }  (+)  (let in {0,1,2} \ {1,2,3} endlet)$
+{ 6,7,8  }  U  (let in -CMP{1,2}  endlet)$
+{ 6,7,8,9  }  @  (let x = {}; in x endlet)$
+{ 6,7,8,9,10 }  \  (let x = {0}; in x endlet)$
+{ 7,8,9,10  } (+) (let x = CMP{}; in x endlet)$
+{  8,9,10  }  U  (let x = CMP{0}; in x endlet)$
+{  9,10  }  \  (let x = CMP{0}; in -x endlet)$
+-{  10  }  @  (let x = {0}; in x U {1} endlet)$
+-{ 0 }  (+)  (let x = {1,2,3}; in {0,1,2} @ x  endlet)$
+-{ 0,1 }  U  (let x = {0,1,2}; in x (+) {1,2,3} endlet)$
+-{ 0,1,2 }  @  (let x = {1,2,3}; y = {0,1,2}; in y \ x endlet)$
+-{ 0,1,2,3 }  \  (let x = {0}; y = {1}; in x U y endlet)$
+-{ 0,1,2,3,4 }  (+)  (let x = {1,2,3}; y = {0,1,2}; in y @ x  endlet)$
+-{  1,2,3,4,5 }  U  (let x = {0,1,2}; y = {1,2,3}; in x (+) y endlet)$
+-{  2,3,4,5 }  @  (let x = {1,2,3}; y = {0,1,2}; in y \ x endlet)$
+-{  3,4,5 }  \  (let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in u endlet)$
+-{  4,5 }  (+)  (let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in if v = w then {1} else {2} endif endlet)$
+-{ 5 } U (let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in  if z <= u then {1} else {2} endif endlet)$
+-{ 0,1,2,3,4,5,6,7,8,9,10 } \  (let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in  if v @ w  = {} then {1} else {2} endif endlet)$
+{ 0,1,2,3,4,5,6,7,8,9,10 } @ (let x = {}; y = x U {1}; z = {1,2} \ y; w = z (+) {2,3}; v = {4,3} @ w; u = -v; in  if y <= x then {1} else {2} endif endlet)$
+let x = {}; x = x U {1}; x = x U {2}; x = x U {3}; in x endlet$ 
+let x = {}; y = x; x = x U {1}; x = x U {2}; x = x U {3}; in y endlet$
+let x = {}; x = x U {1}; y = x; x = x U {2}; x = x U {3}; in y endlet$
+let x = {}; x = x U {1}; x = x U {2}; y = x; x = x U {3}; in y endlet$
+let x = {}; x = x U {1}; x = x U {2}; x = x U {3}; y = x; in y endlet$
+let x = {0,1,2,3,4}; x = x \{0}; x = x \{1}; x = x \ {4}; in x endlet$
+let x = {0,1,2,3,4}; y = x; x = x \{0}; x = x \{1}; x = x \ {4}; in y endlet$
+let x = {0,1,2,3,4}; x = x \{0}; y = x;  x = x \{1}; x = x \ {4}; in y endlet$
+let x = {0,1,2,3,4}; x = x \{0}; x = x \{1}; y = x; x = x \ {4}; in y endlet$
+let x = {0,1,2,3,4}; x = x \{0}; x = x \{1}; x = x \ {4}; y = x; in y endlet$
+let x = {0,1,2,3,4}; x = x  (+) {0}; x = x  (+) {1}; x = x  (+)  {4}; in x endlet$
+let x = {0,1,2,3,4}; y = x; x = x  (+) {0}; x = x  (+) {1}; x = x  (+)  {4}; in y endlet$
+let x = {0,1,2,3,4}; x = x  (+) {0}; y = x;  x = x  (+) {1}; x = x  (+)  {4}; in y endlet$
+let x = {0,1,2,3,4}; x = x  (+) {0}; x = x  (+) {1}; y = x; x = x  (+)  {4}; in y endlet$
+let x = {0,1,2,3,4}; x = x  (+) {0}; x = x  (+) {1}; x = x  (+)  {4}; y = x; in y endlet$
+let x = {0,1,2,3,4}; x = x  @ {0,1,2,3}; x = x  @ {1,2,3}; x = x  @  {1,2}; in x endlet$
+let x = {0,1,2,3,4}; y = x;  x = x  @ {0,1,2,3}; x = x  @ {1,2,3}; x = x  @  {1,2}; in y endlet$
+let x = {0,1,2,3,4}; x = x  @ {0,1,2,3}; y = x;  x = x  @ {1,2,3}; x = x  @  {1,2}; in y endlet$
+let x = {0,1,2,3,4}; x = x  @ {0,1,2,3}; x = x  @ {1,2,3}; y = x; x = x  @  {1,2}; in y endlet$
+let x = {0,1,2,3,4}; x = x  @ {0,1,2,3}; x = x  @ {1,2,3}; x = x  @  {1,2}; y = x; in y endlet$
+
+
+let
+   x = {} ;
+   x = x U {1};
+   x = x U {2};
+   x = x U {3};
+   x = x U {4};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+$
+
+
+let
+   x = {} ;
+   x = x U {1};
+   x = x U {2};
+   x = x U {3};
+   x = x U {4};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+U
+let
+   x = {} ;
+   x = x U {10};
+   x = x U {20};
+   x = x U {30};
+   x = x U {40};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+$
+
+let
+   x = {} ;
+   x = x U {1};
+   x = x U {2};
+   x = x U {3};
+   x = x U {4};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+@
+let
+   x = {} ;
+   x = x U {1,2};
+   x = x U {10};
+   x = x U {20};
+   x = x U {30};
+   x = x U {40};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+$
+
+let
+   x = {} ;
+   x = x U {1};
+   x = x U {2};
+   x = x U {3};
+   x = x U {4};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+\
+let
+   x = {} ;
+   x = x U {1,2};
+   x = x U {10};
+   x = x U {20};
+   x = x U {30};
+   x = x U {40};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+$
+
+let
+   x = {} ;
+   x = x U {1};
+   x = x U {2};
+   x = x U {3};
+   x = x U {4};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+(+)
+let
+   x = {} ;
+   x = x U {1,2};
+   x = x U {10};
+   x = x U {20};
+   x = x U {30};
+   x = x U {40};
+in 
+   let
+      xx = { 10,20,30,40,50, 60 };
+      xx = xx \ {10};
+      xx = xx \ { 20 };
+      xx = xx \ { 30 };
+
+      xx = xx \ { 40 };
+
+      xx = xx \ { 50};
+
+      xx = xx \ { 60 };
+      y = xx;
+    in
+       y (+) x
+    endlet
+endlet 
+$
+

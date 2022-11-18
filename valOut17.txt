@@ -1,0 +1,226 @@
+Expression #1 parse was successful.
+It is (-((({ 1, 2, 3 } \ { 1 }) U (-q)) \ p))
+It evaluates to 
+CMP{ 0, 1, 2, 3, 4, 5, 6 }
+Expression #2 parse was successful.
+It is ((({ 1, 2, 3 } \ { 1 }) U (-q)) \ (-p))
+It evaluates to 
+{ 7 }
+Expression #3 parse was successful.
+It is (-((({ 1, 2, 3 } \ { 1 }) U (-q)) \ (-p)))
+It evaluates to 
+CMP{ 7 }
+Expression #4 parse was successful.
+It is ( a <= (-a) ? b : p )
+It evaluates to 
+{ 0 }
+Expression #5 parse was successful.
+It is (-( (-a) <= a ? a : (-a) ))
+It evaluates to 
+{}
+Expression #6 parse was successful.
+It is ( a = b ? a : b )
+It evaluates to 
+{ 0 }
+Expression #7 parse was successful.
+It is (-( c = c ? CMP{} : {} ))
+It evaluates to 
+{}
+Expression #8 parse was successful.
+It is ({ 2, 3, 4 } (+) ({ 1, 2 } @ { 1 }))
+It evaluates to 
+{ 1, 2, 3, 4 }
+Expression #9 parse was successful.
+It is (-({ 1, 2, 3 } U { 2, 3, 4 }))
+It evaluates to 
+CMP{ 1, 2, 3, 4 }
+Expression #10 parse was successful.
+It is (-( {} = {} ? { 1 } : x ))
+It evaluates to 
+CMP{ 1 }
+Expression #11 parse was successful.
+It is ( {} = CMP{} ? x : { 2 } )
+It evaluates to 
+{ 2 }
+Expression #12 parse was successful.
+It is (-(-(((b U c) @ (b U c)) \ (((b U c) @ (b U c)) \ ((b U c) @ (b U c))))))
+It evaluates to 
+{ 0, 1 }
+Expression #13 parse was successful.
+It is ( {} <= CMP{} ? {} : { 1 } )
+It evaluates to 
+{}
+Expression #14 parse was successful.
+It is (-( CMP{} <= {} ? {} : { 1 } ))
+It evaluates to 
+CMP{ 1 }
+Expression #15 parse was successful.
+It is ( { 0 } <= { 0, 1, 23 } ? {} : { 1 } )
+It evaluates to 
+{}
+Expression #16 parse was successful.
+It is (-( { 0, 1, 23 } <= { 0 } ? {} : { 1 } ))
+It evaluates to 
+CMP{ 1 }
+Expression #17 parse was successful.
+It is ( {} <= {} ? {} : { 1 } )
+It evaluates to 
+{}
+Expression #18 parse was successful.
+It is (-( CMP{} <= CMP{} ? {} : { 1 } ))
+It evaluates to 
+CMP{}
+Expression #19 parse was successful.
+It is ( { 0, 1, 2, 3, 4 } <= { 0, 1, 2, 3, 4 } ? {} : { 1 } )
+It evaluates to 
+{}
+Expression #20 parse was successful.
+It is (-( {} = CMP{} ? {} : { 1 } ))
+It evaluates to 
+CMP{ 1 }
+Expression #21 parse was successful.
+It is ( CMP{} = {} ? {} : { 1 } )
+It evaluates to 
+{ 1 }
+Expression #22 parse was successful.
+It is (-( { 0 } = { 0, 1, 23 } ? {} : { 1 } ))
+It evaluates to 
+CMP{ 1 }
+Expression #23 parse was successful.
+It is (-( { 0, 1, 23 } = { 0 } ? {} : { 1 } ))
+It evaluates to 
+CMP{ 1 }
+Expression #24 parse was successful.
+It is (-( {} = {} ? {} : { 1 } ))
+It evaluates to 
+CMP{}
+Expression #25 parse was successful.
+It is ( CMP{} = CMP{} ? {} : { 1 } )
+It evaluates to 
+{}
+Expression #26 parse was successful.
+It is (-( { 0, 1, 2, 3, 4 } = { 0, 1, 2, 3, 4 } ? {} : { 1 } ))
+It evaluates to 
+CMP{}
+Expression #27 parse was successful.
+It is (-( a <= i ? a : c ))
+It evaluates to 
+CMP{}
+Expression #28 parse was successful.
+It is (-( i <= a ? a : c ))
+It evaluates to 
+CMP{ 1 }
+Expression #29 parse was successful.
+It is ( b <= e ? a : c )
+It evaluates to 
+{}
+Expression #30 parse was successful.
+It is (-( e <= b ? a : c ))
+It evaluates to 
+CMP{ 1 }
+Expression #31 parse was successful.
+It is (-( {} <= a ? a : c ))
+It evaluates to 
+CMP{}
+Expression #32 parse was successful.
+It is (-( i <= CMP{} ? a : c ))
+It evaluates to 
+CMP{}
+Expression #33 parse was successful.
+It is ( (-n) <= (-n) ? a : c )
+It evaluates to 
+{}
+Expression #34 parse was successful.
+It is (-( a = i ? a : c ))
+It evaluates to 
+CMP{ 1 }
+Expression #35 parse was successful.
+It is ( i = a ? a : c )
+It evaluates to 
+{ 1 }
+Expression #36 parse was successful.
+It is (-( b = e ? a : c ))
+It evaluates to 
+CMP{ 1 }
+Expression #37 parse was successful.
+It is (-( e = b ? a : c ))
+It evaluates to 
+CMP{ 1 }
+Expression #38 parse was successful.
+It is (-( a = {} ? a : c ))
+It evaluates to 
+CMP{}
+Expression #39 parse was successful.
+It is ( i = i ? a : c )
+It evaluates to 
+{}
+Expression #40 parse was successful.
+It is (-( (-n) = (-n) ? a : c ))
+It evaluates to 
+CMP{}
+Expression #41 parse was successful.
+It is ( (((({ 1, 2, 3, 4 } @ { 1, 3, 4 }) U { 5, 6 }) \ { 1, 6 }) (+) { 3, 4, 5 }) <= ((CMP{} \ { 1, 2, 3 }) (+) ({ 1, 2, 3 } U (CMP{} @ {}))) ? (-((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) CMP{ 2 })) : (-((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) { 2 })) )
+It evaluates to 
+{}
+Expression #42 parse was successful.
+It is (-( (((({ 1, 2, 3, 4 } @ { 1, 3, 4 }) U { 5, 6 }) \ { 1, 6 }) (+) { 3, 4, 5 }) <= ((CMP{} \ { 1, 2, 3 }) (+) ({ 1, 2 } U (CMP{} @ {}))) ? (-((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) CMP{ 2 })) : (-((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) { 2 })) ))
+It evaluates to 
+CMP{}
+Expression #43 parse was successful.
+It is (-( (((({ 1, 2, 3, 4 } @ { 1, 3, 4 }) U { 5, 6 }) \ { 1, 6 }) (+) { 3, 4, 5 }) = ((CMP{} \ { 1, 2, 3 }) (+) ({ 1, 2, 3 } U (CMP{} @ {}))) ? ((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) CMP{ 2 }) : (-((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) { 2 })) ))
+It evaluates to 
+{}
+Expression #44 parse was successful.
+It is (-( (((({ 1, 2, 3, 4 } @ { 1, 3, 4 }) U { 5, 6 }) \ { 1, 6 }) (+) { 3, 4, 5 }) = (-((CMP{} \ { 1, 2, 3 }) (+) ({ 1, 2, 3 } U (CMP{} @ {})))) ? ((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) CMP{ 2 }) : (-((({ 1, 2, 6 } @ CMP{}) \ ({ 1, 3, 4, 5 } U { 0, 6 })) (+) { 2 })) ))
+It evaluates to 
+{}
+Expression #45 parse was successful.
+It is (-( {} <= CMP{} ? (-( a = {} ? {} : { 1 } )) : ( b <= a ? { 2 } : { 3 } ) ))
+It evaluates to 
+{}
+Expression #46 parse was successful.
+It is (-( {} <= CMP{} ? (-( a = { 1 } ? {} : { 1 } )) : (-( b <= a ? { 2 } : { 3 } )) ))
+It evaluates to 
+{ 1 }
+Expression #47 parse was successful.
+It is ( { 1 } = CMP{ 1 } ? (-( a <= b ? {} : { 1 } )) : (-( (a @ CMP{}) = (({} U c) \ { 1 }) ? { 2 } : { 3 } )) )
+It evaluates to 
+CMP{ 2 }
+Expression #48 parse was successful.
+It is (-( { 1 } = (CMP{} \ CMP{ 1 }) ? ( a = {} ? {} : { 1 } ) : (-( (b U c) = ((f \ ({ 234 } @ { 1, 2, 234 })) (+) t) ? { 2 } : { 3 } )) ))
+It evaluates to 
+CMP{}
+Expression #49 parse was successful.
+It is (-(CMP{} \ { 1, 2, 3 }))
+It evaluates to 
+{ 1, 2, 3 }
+Expression #50 parse was successful.
+It is (-({ 0, 1, 2 } @ { 1, 2, 3 }))
+It evaluates to 
+CMP{ 1, 2 }
+Expression #51 parse was successful.
+It is ({ 0, 1 } U { 2, 3 })
+It evaluates to 
+{ 0, 1, 2, 3 }
+Expression #52 parse was successful.
+It is (-({ 0, 1, 2, 3 } (+) { 2, 3, 4, 5 }))
+It evaluates to 
+CMP{ 0, 1, 4, 5 }
+Expression #53 parse was successful.
+It is (-(-(-{})))
+It evaluates to 
+CMP{}
+Expression #54 parse was successful.
+It is (-(-(-(({ 0, 1, 2, 3 } \ { 0, 1, 2 }) (+) ({ 0, 1 } U ({} @ CMP{}))))))
+It evaluates to 
+CMP{ 0, 1, 3 }
+Expression #55 parse was successful.
+It is (-((((-(CMP{} \ (({ 1 } @ {}) U { 1 }))) U { 2, 3, 4 }) @ { 2, 3 }) (+) CMP{ 2, 3 }))
+It evaluates to 
+{}
+Expression #56 parse was successful.
+It is (-(-(({} (+) (-{})) U ({} (+) (-{})))))
+It evaluates to 
+CMP{}
+End of file reached.
+56 expressions were consumed, 0 failed to parse, 56 parsed, and 56 of those evaluated to a result.

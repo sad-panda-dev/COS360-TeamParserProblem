@@ -1,0 +1,116 @@
+Expression #1 parse was successful.
+It is {}
+It evaluates to 
+{}
+Expression #2 parse was successful.
+It is { 1 }
+It evaluates to 
+{ 1 }
+Expression #3 parse was successful.
+It is { 1, 2 }
+It evaluates to 
+{ 1, 2 }
+Expression #4 parse was successful.
+It is { 1, 2, 3 }
+It evaluates to 
+{ 1, 2, 3 }
+Expression #5 parse was successful.
+It is { 10, 20, 30, 40, 50 }
+It evaluates to 
+{ 10, 20, 30, 40, 50 }
+Expression #6 parse was successful.
+It is CMP{}
+It evaluates to 
+CMP{}
+Expression #7 parse was successful.
+It is CMP{ 1 }
+It evaluates to 
+CMP{ 1 }
+Expression #8 parse was successful.
+It is CMP{ 1, 2 }
+It evaluates to 
+CMP{ 1, 2 }
+Expression #9 parse was successful.
+It is CMP{ 1, 2, 3 }
+It evaluates to 
+CMP{ 1, 2, 3 }
+Expression #10 parse was successful.
+It is CMP{ 10, 20, 30, 40, 50 }
+It evaluates to 
+CMP{ 10, 20, 30, 40, 50 }
+Expression #11 parse was successful.
+It is a
+It evaluates to 
+{}
+Expression #12 parse was successful.
+It is b
+It evaluates to 
+{ 0 }
+Expression #13 parse was successful.
+It is c
+It evaluates to 
+{ 1 }
+Expression #14 parse was successful.
+It is d
+It evaluates to 
+{ 2, 3 }
+Expression #15 parse was successful.
+It is e
+It evaluates to 
+{ 0, 1, 23 }
+Expression #16 parse was successful.
+It is f
+It evaluates to 
+{ 0, 1, 234 }
+Expression #17 parse was successful.
+It is g
+It evaluates to 
+{ 0, 1, 2345 }
+Expression #18 parse was successful.
+It is h
+It evaluates to 
+{ 56 }
+Expression #19 parse was successful.
+It is i
+It evaluates to 
+CMP{ 0 }
+Expression #20 parse was successful.
+It is j
+It evaluates to 
+CMP{ 72 }
+Expression #21 parse was successful.
+It is k
+It evaluates to 
+CMP{ 0, 1, 2 }
+Expression #22 parse was successful.
+It is m
+It evaluates to 
+CMP{ 0, 1, 2, 3 }
+Expression #23 parse was successful.
+It is n
+It evaluates to 
+CMP{ 0, 1, 2, 3, 4 }
+Expression #24 parse was successful.
+It is o
+It evaluates to 
+CMP{ 0, 1, 2, 3, 4, 5 }
+Expression #25 parse was successful.
+It is p
+It evaluates to 
+CMP{ 0, 1, 2, 3, 4, 5, 6 }
+Expression #26 parse was successful.
+It is q
+It evaluates to 
+CMP{ 0, 1, 2, 3, 4, 5, 6, 7 }
+Expression #27 parse was successful.
+It is r
+It evaluates to 
+CMP{}
+Expression #28 parse was successful.
+It is s
+Expression #28's evaluation threw an exception with message 'error in eval : variable s is not bound in the environment'
+Expression #29 parse was successful.
+It is t
+Expression #29's evaluation threw an exception with message 'error in eval : variable t is not bound in the environment'
+End of file reached.
+29 expressions were consumed, 0 failed to parse, 29 parsed, and 27 of those evaluated to a result.

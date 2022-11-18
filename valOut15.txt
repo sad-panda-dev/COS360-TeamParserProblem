@@ -1,0 +1,318 @@
+Expression #1 parse was successful.
+It is {}
+It evaluates to 
+{}
+Expression #2 parse was successful.
+It is { 0 }
+It evaluates to 
+{ 0 }
+Expression #3 parse was successful.
+It is CMP{}
+It evaluates to 
+CMP{}
+Expression #4 parse was successful.
+It is CMP{ 0 }
+It evaluates to 
+CMP{ 0 }
+Expression #5 parse was successful.
+It is ({ 0 } U { 1 })
+It evaluates to 
+{ 0, 1 }
+Expression #6 parse was successful.
+It is ({ 0, 1, 2 } @ { 1, 2, 3 })
+It evaluates to 
+{ 1, 2 }
+Expression #7 parse was successful.
+It is ({ 0, 1, 2 } (+) { 1, 2, 3 })
+It evaluates to 
+{ 0, 3 }
+Expression #8 parse was successful.
+It is ({ 0, 1, 2 } \ { 1, 2, 3 })
+It evaluates to 
+{ 0 }
+Expression #9 parse was successful.
+It is (-CMP{ 1, 2 })
+It evaluates to 
+{ 1, 2 }
+Expression #10 parse was successful.
+It is {}
+It evaluates to 
+{}
+Expression #11 parse was successful.
+It is { 0 }
+It evaluates to 
+{ 0 }
+Expression #12 parse was successful.
+It is CMP{}
+It evaluates to 
+CMP{}
+Expression #13 parse was successful.
+It is CMP{ 0 }
+It evaluates to 
+CMP{ 0 }
+Expression #14 parse was successful.
+It is (-CMP{ 0 })
+It evaluates to 
+{ 0 }
+Expression #15 parse was successful.
+It is ({ 0 } U { 1 })
+It evaluates to 
+{ 0, 1 }
+Expression #16 parse was successful.
+It is ({ 0, 1, 2 } @ { 1, 2, 3 })
+It evaluates to 
+{ 1, 2 }
+Expression #17 parse was successful.
+It is ({ 0, 1, 2 } (+) { 1, 2, 3 })
+It evaluates to 
+{ 0, 3 }
+Expression #18 parse was successful.
+It is ({ 0, 1, 2 } \ { 1, 2, 3 })
+It evaluates to 
+{ 0 }
+Expression #19 parse was successful.
+It is ({ 0 } U { 1 })
+It evaluates to 
+{ 0, 1 }
+Expression #20 parse was successful.
+It is ({ 0, 1, 2 } @ { 1, 2, 3 })
+It evaluates to 
+{ 1, 2 }
+Expression #21 parse was successful.
+It is ({ 0, 1, 2 } (+) { 1, 2, 3 })
+It evaluates to 
+{ 0, 3 }
+Expression #22 parse was successful.
+It is ({ 0, 1, 2 } \ { 1, 2, 3 })
+It evaluates to 
+{ 0 }
+Expression #23 parse was successful.
+It is (-({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })))
+It evaluates to 
+CMP{ 3 }
+Expression #24 parse was successful.
+It is ( ({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })) = (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 }) ? { 1 } : { 2 } )
+It evaluates to 
+{ 1 }
+Expression #25 parse was successful.
+It is ( ({ 1, 2 } \ ({} U { 1 })) <= (-({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 }))) ? { 1 } : { 2 } )
+It evaluates to 
+{ 1 }
+Expression #26 parse was successful.
+It is ( (({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })) @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })) = {} ? { 1 } : { 2 } )
+It evaluates to 
+{ 2 }
+Expression #27 parse was successful.
+It is ( ({} U { 1 }) <= {} ? { 1 } : { 2 } )
+It evaluates to 
+{ 2 }
+Expression #28 parse was successful.
+It is ({ 0 } U {})
+It evaluates to 
+{ 0 }
+Expression #29 parse was successful.
+It is ({ 0, 1 } \ { 0 })
+It evaluates to 
+{ 1 }
+Expression #30 parse was successful.
+It is ({ 0, 1, 2 } @ CMP{})
+It evaluates to 
+{ 0, 1, 2 }
+Expression #31 parse was successful.
+It is ({ 0, 1, 2, 3 } (+) CMP{ 0 })
+It evaluates to 
+CMP{ 1, 2, 3 }
+Expression #32 parse was successful.
+It is ({ 0, 1, 2, 3, 4 } U ({ 0 } U { 1 }))
+It evaluates to 
+{ 0, 1, 2, 3, 4 }
+Expression #33 parse was successful.
+It is ({ 0, 1, 2, 3, 4, 5 } @ ({ 0, 1, 2 } @ { 1, 2, 3 }))
+It evaluates to 
+{ 1, 2 }
+Expression #34 parse was successful.
+It is ({ 6 } \ ({ 0, 1, 2 } (+) { 1, 2, 3 }))
+It evaluates to 
+{ 6 }
+Expression #35 parse was successful.
+It is ({ 6, 7 } (+) ({ 0, 1, 2 } \ { 1, 2, 3 }))
+It evaluates to 
+{ 0, 6, 7 }
+Expression #36 parse was successful.
+It is ({ 6, 7, 8 } U (-CMP{ 1, 2 }))
+It evaluates to 
+{ 1, 2, 6, 7, 8 }
+Expression #37 parse was successful.
+It is ({ 6, 7, 8, 9 } @ {})
+It evaluates to 
+{}
+Expression #38 parse was successful.
+It is ({ 6, 7, 8, 9, 10 } \ { 0 })
+It evaluates to 
+{ 6, 7, 8, 9, 10 }
+Expression #39 parse was successful.
+It is ({ 7, 8, 9, 10 } (+) CMP{})
+It evaluates to 
+CMP{ 7, 8, 9, 10 }
+Expression #40 parse was successful.
+It is ({ 8, 9, 10 } U CMP{ 0 })
+It evaluates to 
+CMP{ 0 }
+Expression #41 parse was successful.
+It is ({ 9, 10 } \ (-CMP{ 0 }))
+It evaluates to 
+{ 9, 10 }
+Expression #42 parse was successful.
+It is ((-{ 10 }) @ ({ 0 } U { 1 }))
+It evaluates to 
+{ 0, 1 }
+Expression #43 parse was successful.
+It is ((-{ 0 }) (+) ({ 0, 1, 2 } @ { 1, 2, 3 }))
+It evaluates to 
+CMP{ 0, 1, 2 }
+Expression #44 parse was successful.
+It is ((-{ 0, 1 }) U ({ 0, 1, 2 } (+) { 1, 2, 3 }))
+It evaluates to 
+CMP{ 1 }
+Expression #45 parse was successful.
+It is ((-{ 0, 1, 2 }) @ ({ 0, 1, 2 } \ { 1, 2, 3 }))
+It evaluates to 
+{}
+Expression #46 parse was successful.
+It is ((-{ 0, 1, 2, 3 }) \ ({ 0 } U { 1 }))
+It evaluates to 
+CMP{ 0, 1, 2, 3 }
+Expression #47 parse was successful.
+It is ((-{ 0, 1, 2, 3, 4 }) (+) ({ 0, 1, 2 } @ { 1, 2, 3 }))
+It evaluates to 
+CMP{ 0, 3, 4 }
+Expression #48 parse was successful.
+It is ((-{ 1, 2, 3, 4, 5 }) U ({ 0, 1, 2 } (+) { 1, 2, 3 }))
+It evaluates to 
+CMP{ 1, 2, 4, 5 }
+Expression #49 parse was successful.
+It is ((-{ 2, 3, 4, 5 }) @ ({ 0, 1, 2 } \ { 1, 2, 3 }))
+It evaluates to 
+{ 0 }
+Expression #50 parse was successful.
+It is ((-{ 3, 4, 5 }) \ (-({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 }))))
+It evaluates to 
+{}
+Expression #51 parse was successful.
+It is ((-{ 4, 5 }) (+) ( ({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })) = (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 }) ? { 1 } : { 2 } ))
+It evaluates to 
+CMP{ 1, 4, 5 }
+Expression #52 parse was successful.
+It is ((-{ 5 }) U ( ({ 1, 2 } \ ({} U { 1 })) <= (-({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 }))) ? { 1 } : { 2 } ))
+It evaluates to 
+CMP{ 5 }
+Expression #53 parse was successful.
+It is ((-{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }) \ ( (({ 3, 4 } @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })) @ (({ 1, 2 } \ ({} U { 1 })) (+) { 2, 3 })) = {} ? { 1 } : { 2 } ))
+It evaluates to 
+CMP{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
+Expression #54 parse was successful.
+It is ({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } @ ( ({} U { 1 }) <= {} ? { 1 } : { 2 } ))
+It evaluates to 
+{ 2 }
+Expression #55 parse was successful.
+It is ((({} U { 1 }) U { 2 }) U { 3 })
+It evaluates to 
+{ 1, 2, 3 }
+Expression #56 parse was successful.
+It is {}
+It evaluates to 
+{}
+Expression #57 parse was successful.
+It is ({} U { 1 })
+It evaluates to 
+{ 1 }
+Expression #58 parse was successful.
+It is (({} U { 1 }) U { 2 })
+It evaluates to 
+{ 1, 2 }
+Expression #59 parse was successful.
+It is ((({} U { 1 }) U { 2 }) U { 3 })
+It evaluates to 
+{ 1, 2, 3 }
+Expression #60 parse was successful.
+It is ((({ 0, 1, 2, 3, 4 } \ { 0 }) \ { 1 }) \ { 4 })
+It evaluates to 
+{ 2, 3 }
+Expression #61 parse was successful.
+It is { 0, 1, 2, 3, 4 }
+It evaluates to 
+{ 0, 1, 2, 3, 4 }
+Expression #62 parse was successful.
+It is ({ 0, 1, 2, 3, 4 } \ { 0 })
+It evaluates to 
+{ 1, 2, 3, 4 }
+Expression #63 parse was successful.
+It is (({ 0, 1, 2, 3, 4 } \ { 0 }) \ { 1 })
+It evaluates to 
+{ 2, 3, 4 }
+Expression #64 parse was successful.
+It is ((({ 0, 1, 2, 3, 4 } \ { 0 }) \ { 1 }) \ { 4 })
+It evaluates to 
+{ 2, 3 }
+Expression #65 parse was successful.
+It is ((({ 0, 1, 2, 3, 4 } (+) { 0 }) (+) { 1 }) (+) { 4 })
+It evaluates to 
+{ 2, 3 }
+Expression #66 parse was successful.
+It is { 0, 1, 2, 3, 4 }
+It evaluates to 
+{ 0, 1, 2, 3, 4 }
+Expression #67 parse was successful.
+It is ({ 0, 1, 2, 3, 4 } (+) { 0 })
+It evaluates to 
+{ 1, 2, 3, 4 }
+Expression #68 parse was successful.
+It is (({ 0, 1, 2, 3, 4 } (+) { 0 }) (+) { 1 })
+It evaluates to 
+{ 2, 3, 4 }
+Expression #69 parse was successful.
+It is ((({ 0, 1, 2, 3, 4 } (+) { 0 }) (+) { 1 }) (+) { 4 })
+It evaluates to 
+{ 2, 3 }
+Expression #70 parse was successful.
+It is ((({ 0, 1, 2, 3, 4 } @ { 0, 1, 2, 3 }) @ { 1, 2, 3 }) @ { 1, 2 })
+It evaluates to 
+{ 1, 2 }
+Expression #71 parse was successful.
+It is { 0, 1, 2, 3, 4 }
+It evaluates to 
+{ 0, 1, 2, 3, 4 }
+Expression #72 parse was successful.
+It is ({ 0, 1, 2, 3, 4 } @ { 0, 1, 2, 3 })
+It evaluates to 
+{ 0, 1, 2, 3 }
+Expression #73 parse was successful.
+It is (({ 0, 1, 2, 3, 4 } @ { 0, 1, 2, 3 }) @ { 1, 2, 3 })
+It evaluates to 
+{ 1, 2, 3 }
+Expression #74 parse was successful.
+It is ((({ 0, 1, 2, 3, 4 } @ { 0, 1, 2, 3 }) @ { 1, 2, 3 }) @ { 1, 2 })
+It evaluates to 
+{ 1, 2 }
+Expression #75 parse was successful.
+It is ((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) (((({} U { 1 }) U { 2 }) U { 3 }) U { 4 }))
+It evaluates to 
+{ 1, 2, 3, 4 }
+Expression #76 parse was successful.
+It is (((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) (((({} U { 1 }) U { 2 }) U { 3 }) U { 4 })) U ((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) (((({} U { 10 }) U { 20 }) U { 30 }) U { 40 })))
+It evaluates to 
+{ 1, 2, 3, 4, 10, 20, 30, 40 }
+Expression #77 parse was successful.
+It is (((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) (((({} U { 1 }) U { 2 }) U { 3 }) U { 4 })) @ ((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) ((((({} U { 1, 2 }) U { 10 }) U { 20 }) U { 30 }) U { 40 })))
+It evaluates to 
+{ 1, 2 }
+Expression #78 parse was successful.
+It is (((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) (((({} U { 1 }) U { 2 }) U { 3 }) U { 4 })) \ ((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) ((((({} U { 1, 2 }) U { 10 }) U { 20 }) U { 30 }) U { 40 })))
+It evaluates to 
+{ 3, 4 }
+Expression #79 parse was successful.
+It is (((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) (((({} U { 1 }) U { 2 }) U { 3 }) U { 4 })) (+) ((((((({ 10, 20, 30, 40, 50, 60 } \ { 10 }) \ { 20 }) \ { 30 }) \ { 40 }) \ { 50 }) \ { 60 }) (+) ((((({} U { 1, 2 }) U { 10 }) U { 20 }) U { 30 }) U { 40 })))
+It evaluates to 
+{ 3, 4, 10, 20, 30, 40 }
+End of file reached.
+79 expressions were consumed, 0 failed to parse, 79 parsed, and 79 of those evaluated to a result.
