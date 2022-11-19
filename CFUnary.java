@@ -104,7 +104,7 @@ public class CFUnary extends CFExp{
    
    ************************************************************************/
 	public  CFExp deepCopy(){
-      CFUnary deepCopy = null;
+      CFExp deepCopy = null;
       try {
           deepCopy = new CFUnary(subExp);
       } 
