@@ -50,8 +50,19 @@ public class CFUnary extends CFExp{
    **********************************************************************/
    
 	public CofinFin eval(Map<String, CofinFin> env) throws Exception{
-      return null;
-      
+      if (env == null) { 
+         throw new Exception("error in eval : env is null");
+      } 
+     else {
+         CofinFin tmp = subExp.eval(env);
+
+          if (!env.containsValue(tmp)) {
+              throw new Exception("error in eval : variable " + tmp.toString() + " is not bound in the environment");
+          } 
+          else {
+              return tmp.complement();
+          }
+      }
    }
 	
    /*
@@ -73,8 +84,16 @@ public class CFUnary extends CFExp{
    **********************************************************************/
  
 	public  CFExp substitute(Map<String, CFExp> bindings)throws Exception{
-      return null;
-      
+      if (bindings == null) {
+         throw new Exception("error in substitute : bindings is null");
+     } 
+    else {
+         CFExp subRecur = subExp.substitute(bindings);
+         if (subRecur != null) {
+             subExp = subRecur;
+         }
+         return this;
+     }    
    }
    
    /*
@@ -85,16 +104,14 @@ public class CFUnary extends CFExp{
    
    ************************************************************************/
 	public  CFExp deepCopy(){
-      try{
-         // should never throw an exception
-         return null;
+      CFUnary deepCopy = null;
+      try {
+          deepCopy = new CFUnary(subExp);
+      } 
+      catch (Exception e) {
+          e.printStackTrace();
       }
-      catch(Exception e){
-         // should never throw an exception
-         return null;
-      }      
+      return deepCopy;
    }
-	
 }
-
 
