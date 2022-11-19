@@ -53,13 +53,13 @@ public class CFUnary extends CFExp{
       if (env == null) { 
          throw new Exception("error in eval : env is null");
       } 
-     else { // env is not null
+     else {
          CofinFin temp = subExp.eval(env);
 
-          if (!env.containsValue(temp)) { // error for not val not in env
+          if (!env.containsValue(temp)) {
               throw new Exception("error in eval : variable " + temp.toString() + " is not bound in the environment");
           } 
-          else { // returns complement
+          else {
               return temp.complement();
           }
       }
