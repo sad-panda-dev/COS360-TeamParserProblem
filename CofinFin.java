@@ -248,6 +248,68 @@ public class CofinFin {
       }
    }
 
+   public CofinFin setDifference(CofinFin other)throws Exception{
+      CofinFin setDiff;
+
+      if (other == null) {
+         throw new Exception("Invalid call to setDifference: other is null");
+      } else {
+         setDiff = new CofinFin();
+         setDiff.isComplemented = false;
+
+         // If neither set isComplemented, difference will be other - this
+         if (this.isComplemented && other.isComplemented) {
+            setDiff.theSet = new TreeSet<Integer>(other.theSet);
+            setDiff.theSet.removeAll(this.theSet);
+         }
+         /*
+          * If this isComplemented and not other, difference will be
+          * this.theSet.retainAll(other.theSet)
+          */
+         else if (!this.isComplemented && other.isComplemented) {
+            setDiff.theSet = new TreeSet<Integer>(this.theSet);
+            setDiff.theSet.retainAll(other.theSet);
+         }
+         /*
+          * If other isComplemented and not this, difference will be
+          * this.theSet.addAll(other.theSet)
+          */
+         else if (this.isComplemented && !other.isComplemented) {
+            setDiff.isComplemented = true;
+            setDiff.theSet = new TreeSet<Integer>(this.theSet);
+            setDiff.theSet.addAll(other.theSet);
+         }
+         // If both sets are complemented, difference will be this - other
+         else {
+            setDiff.theSet = new TreeSet<Integer>(this.theSet);
+            setDiff.theSet.removeAll(other.theSet);
+         }
+      }
+      return setDiff;
+}
+public CofinFin symmetricDifference(CofinFin other)throws Exception{
+   CofinFin returnCF = new CofinFin();
+
+   if (other == null) {
+      throw new Exception("Invalid call to symmetricDifference: other is null");
+   } else {
+      TreeSet<Integer> symDiff = new TreeSet<Integer>(this.theSet);
+      symDiff.addAll(other.theSet);
+      TreeSet<Integer> tmp = new TreeSet<Integer>(this.theSet);
+      tmp.retainAll(other.theSet);
+      symDiff.removeAll(tmp);
+      returnCF.theSet = symDiff;
+
+      // If either set is cofinite, set isComplemented to true, else false
+      if (this.isComplemented != other.isComplemented) {
+         returnCF.isComplemented = true;
+      } else {
+         returnCF.isComplemented = false;
+      }
+      return returnCF;
+   }
+}
+
    public String toString() {
       /*
        * If isComplemented is false if the set is empty returns the string "{}" else
