@@ -97,8 +97,21 @@ public class CFConditional extends CFExp{
    **********************************************************************/
    
 	public CofinFin eval(Map<String, CofinFin> env) throws Exception{
-      return null;
-      
+      if (env == null) { // throw exception
+         throw new Exception("error in eval : env is null");
+      } else { 
+         CofinFin left = leftTest.eval(env); // Left test eval
+         
+         CofinFin right = rightTest.eval(env); // Right test eval
+         
+         // Compare left and right evals
+         if(left.equals(right)) { // True
+               return trueChoice.eval(env);
+         }
+         else {  // False
+               return falseChoice.eval(env);
+         }
+     }   
    }
    
   
@@ -137,14 +150,12 @@ public class CFConditional extends CFExp{
    **********************************************************************/
    public CFExp deepCopy(){
       try{
-         // should never throw an exception
-         return null;
+         deepCopy = new CFConditional(relop, leftTest, rightTest, trueChoice, falseChoice);
       }
       catch(Exception e){
-         // should never throw an exception
-         return null;
+         e.printStackTrace();
       }
-      
+      return deepCopy;
    }
 }
 
