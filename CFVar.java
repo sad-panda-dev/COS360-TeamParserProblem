@@ -62,8 +62,15 @@ public class CFVar extends CFExp{
 	
 	**********************************************************************/
 	public CofinFin eval(Map<String, CofinFin> env) throws Exception{
-		return null;
-      
+		if (env == null) {
+         throw new Exception("error in eval : environment is null");
+      } else {
+         if (env.containsKey(theVar)) {
+            return env.get(theVar);
+         } else {
+            throw new Exception("error in eval : variable " + theVar + " is not bound in the environment");
+         }
+      }
 	}
 	
 	/*
@@ -82,9 +89,14 @@ public class CFVar extends CFExp{
 	
 	**********************************************************************/
 	public CFExp substitute(Map<String, CFExp> bindings) throws Exception{
-      return null;
-      
-         
+      if (bindings == null) {
+         throw new Exception("error in substitute : bindings is null");
+      } else if (bindings.containsKey(theVar)) {
+         CFExp entry = bindings.get(theVar);
+         if (entry != null) {
+            return deepCopy(entry);
+         }
+      }
 	}
    
    /*
@@ -96,15 +108,15 @@ public class CFVar extends CFExp{
    
    *****************************************************************/
    public CFExp deepCopy(){
+      CFExp deepCopy = null;
+
       try{
-         // should never throw an exception
-         return null;
+         copy = new CFVar(theVar);
       }
       catch(Exception e){
-         // should never throw an exception
-         return null;
+         e.printStackTrace();
       }
-      
+      return theCopy;
    }
 	
 }
