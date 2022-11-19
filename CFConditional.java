@@ -104,7 +104,7 @@ public class CFConditional extends CFExp{
          
          CofinFin confinFinRight = rightTest.eval(env);
          
-         if(confinFinLeft.equals(right)) {
+         if(confinFinLeft.equals(confinFinRight)) {
                return trueChoice.eval(env);
          }
          else {

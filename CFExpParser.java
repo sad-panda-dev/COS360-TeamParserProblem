@@ -808,9 +808,26 @@ public class CFExpParser{
    *************************************************************************/
    private int[] SETINTERIOR() throws Exception{
 
-      int[] result;
-      return null;
-      
+      int tk = lex.lookahead().getTokenType();
+
+      //Check the lookahead set, if token is not in throw exception
+      if(!CFToken.SETINTERIORSet.contains(tk)) {
+         throw new Exception(getErrorMessage("SETINTERIOR", CFToken.SETINTERIORSet, lex));
+      }
+      //If were dealing with a right brace this signifies empty string, so we return empty array
+      if(tk == CFToken.RIGHTBRACE) {
+         lex.consume();
+          int[] result = new int[0];
+          return result;
+      }
+      //Otherwise we create an int array of size[size of the list returned by NESETINTERIOR]
+      int[] result = new int[NESETINTERIOR().size()];
+      //Loop through List returned by NESETINTERIOR and add items to the array we created and return it
+      for(int i = 0; i < result.length; i++) {
+         result[i] = NESETINTERIOR().get(i);
+      }
+      lex.consume();
+      return result;
    }
 
    /*
