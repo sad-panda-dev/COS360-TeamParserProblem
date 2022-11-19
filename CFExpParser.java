@@ -225,7 +225,6 @@ import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import java.util.LinkedList;
 public class CFExpParser{
    // this scanner object will be used repeatedly;
    // it does not appear to work consistently in between calls when it is bound to 
@@ -362,10 +361,37 @@ public class CFExpParser{
    return the appropriate CFExp object or throw an exception.
    
    *******************************************************************************/
-   private CFExp E() throws Exception{
-      return null;
-      
+   private CFExp E() throws Exception{ // struct based on Briggs comments in header
+   
+      CFToken tk = lex.lookahead(); // get next token
+      CFExp result; // for compiler
+
+      // If the token type is in the set E.
+      if(CFToken.ESet.contains(tk.getTokenType())){
+         
+         result = A(); // Set results exp to A
+         CFExp temp;
+         tk = lex.lookahead(); // Get the next token
+
+         // As long as the token type is 0 (symmdiff),
+         // build the expression object whose 
+         // left sub is the prior value of result,
+         // and whose right sub is temp, 
+         // and whose root is the operator token; 
+         while (tk.getTokenType() == CFToken.SYMMETRICDIFF) {            
+            temp = A(); // get prior expression
+            lex.consume(); // Remove unwanted ws. No effect if tk is EOF.
+            tk = lex.lookahead(); // Next token without advancing
             
+            result = new CFBinary(CFToken.SYMMETRICDIFF,result,temp);
+         }
+      
+      }else{ //not in Eset
+         throw new Exception(getErrorMessage("E", CFToken.ESet, lex)); 
+      }
+      
+      return result;
+   
    }
    
    /*
@@ -379,9 +405,28 @@ public class CFExpParser{
    
    *************************************************************************/
    private CFExp A() throws Exception{
+      // see comments from E()
+      CFToken tk = lex.lookahead();
+      CFExp result; 
+
+      if(CFToken.ASet.contains(tk.getTokenType())){
+         
+         result = B();
+         CFExp temp;
+         tk = lex.lookahead();
+
+         while (tk.getTokenType() == CFToken.SETDIFF) { //18        
+            temp = B();
+            lex.consume();
+            tk = lex.lookahead();
+            result = new CFBinary(CFToken.SETDIFF, result, temp);
+         }
       
-      return null;
+      }else{
+         throw new Exception(getErrorMessage("A", CFToken.ASet, lex)); 
+      }
       
+      return result;      
       
    }
 
@@ -398,8 +443,28 @@ public class CFExpParser{
    *************************************************************************/
    private CFExp B() throws Exception{
       
-      return null;
-      
+      // see comments from E()
+      CFToken tk = lex.lookahead();
+      CFExp result; 
+
+      if(CFToken.BSet.contains(tk.getTokenType())){
+         
+         result = C();
+         CFExp temp;
+         tk = lex.lookahead();
+
+         while (tk.getTokenType() == CFToken.UNION) { //18        
+            temp = C();
+            lex.consume();
+            tk = lex.lookahead();
+            result = new CFBinary(CFToken.UNION, result, temp);
+         }
+
+      }else{
+         throw new Exception(getErrorMessage("B", CFToken.BSet, lex)); 
+      }
+
+      return result;            
       
    }
 
@@ -420,8 +485,28 @@ public class CFExpParser{
    *************************************************************************/
    private CFExp C() throws Exception{
       
-      return null;
-      
+      // see comments from E()
+      CFToken tk = lex.lookahead();
+      CFExp result; 
+
+      if(CFToken.CSet.contains(tk.getTokenType())){
+         
+         result = D();
+         CFExp temp;
+         tk = lex.lookahead();
+
+         while (tk.getTokenType() == CFToken.INTERSECTION) { //17      
+            temp = D();
+            lex.consume();
+            tk = lex.lookahead();
+            result = new CFBinary(CFToken.INTERSECTION, result, temp);
+         }
+
+      }else{
+         throw new Exception(getErrorMessage("C", CFToken.CSet, lex)); 
+      }
+
+      return result;           
       
    }
 
@@ -481,8 +566,169 @@ public class CFExpParser{
    *************************************************************************/
    private CFExp D() throws Exception{
       
-      return null;
+      CFToken tk = lex.lookahead();
+      boolean isComp = false;
+      int compCount = 0;
+   
+      // Error out if not in D set
+      if(!CFToken.DSet.contains(tk.getTokenType())){
+         throw new Exception(getErrorMessage("D", CFToken.DSet, lex));
+      }
+
+      // Get compliment count
+      // Set boolean based on odd/true or even/false
+      while(tk.getTokenType() == CFToken.COMPLEMENT) {
+         compCount++;
+         lex.consume();
+         tk = lex.lookahead();          
+      }
+      if(compCount % 2 == 1){
+         isComp = true;
+      }
+
+      // Next token. Error out if not in D set.
+      if(! CFToken.DSet.contains(tk.getTokenType())){
+         throw new Exception(getErrorMessage("D", CFToken.DSet, lex));
+      }
+
+      // for LET IN ENDLET
+      if (tk.getTokenType() == CFToken.LET)
+       {  // 2        
+         
+         lex.consume();
+         tk = lex.lookahead();
+         Map<String, CFExp> bmap = BLIST(); // provides expr object modified by substitutions
+         tk = lex.lookahead();
+         
+         // Set check for IN in D set
+         if(!(tk.getTokenType() == CFToken.IN)) { // 20
+            throw new Exception (getErrorMessage("D",CFToken.IN, lex));
+         }
+         
+         lex.consume(); // ws
+         CFExp result = E().substitute(bmap); // // hold E expression for CFUn !!!! fix blist err
+         tk = lex.lookahead();
+         
+         // Set check ENDLET in D
+         if(!(tk.getTokenType() == CFToken.ENDLET)){
+            throw new Exception (getErrorMessage("D", CFToken.ENDLET, lex));     
+         }       
+         
+         lex.consume(); //ws
+         
+         // If it is complement, return unary 
+         // else just return local variable
+         if(isComp){
+            return new CFUnary(result);
+         }
+         return result;
+      
+      }                
+
+      
+      
+      // LeftP E RightP
+      else if (tk.getTokenType() == CFToken.LEFTPAREN) {
+         
+         lex.consume();        
+         CFExp result = E(); // hold E expression for CFUn
+         tk = lex.lookahead();      
+         
+         // Check RPREM in D set
+         if(!(tk.getTokenType() == CFToken.RIGHTPAREN)){
+               throw new Exception (getErrorMessage("D",CFToken.RIGHTPAREN, lex));
+         }
+         
+         lex.consume();     
+         
+         // If it is complement, return unary 
+         // else just return local variable
+         if(isComp){
+            return new CFUnary(result);
+         }
+         return result;
+      }
+
+
+
+      // for id 1
+      else if(tk.getTokenType() == CFToken.ID) {
             
+         CFVar result = new CFVar(tk.getTokenString());
+         lex.consume();
+         
+         // If it is complement, return unary 
+         // else just return local variable
+         if(isComp)
+            return new CFUnary(result);
+         return result;
+      }
+
+
+
+
+      // If then else endif
+      else if (tk.getTokenType()== CFToken.IF) { 
+
+         lex.consume();
+         tk = lex.lookahead();
+         
+         // set check for THEN in D
+         if(!(tk.getTokenType() == CFToken.THEN)){
+            throw new Exception (getErrorMessage("D", CFToken.THEN, lex));
+         }
+         
+         lex.consume();
+         CFExp exp = E(); // hold E expression for CFConditional
+         tk = lex.lookahead();
+         
+         // set check for ELSE in d
+         if(!(tk.getTokenType() == CFToken.ELSE)){
+            throw new Exception (getErrorMessage("D", CFToken.ELSE, lex));
+         }
+         
+         lex.consume();
+         CFExp exp1 = E(); // hold E expression for CFConditional
+         tk = lex.lookahead();
+         
+         // set check for ENDIF
+         if(!(tk.getTokenType() == CFToken.ENDIF)){
+            throw new Exception (getErrorMessage("D", CFToken.ENDIF, lex));
+         }         
+         
+         lex.consume();
+         Object subs[] = TEST();
+         CFConditional result = 
+            new CFConditional((Integer)subs[1], (CFExp)subs[0], (CFExp)subs[2], exp, exp1);
+         
+         // If it is complement, return unary 
+         // else just return local variable
+         if(isComp){
+         return new CFUnary (result);
+         }
+         return result;                  
+      
+      }
+
+      
+      
+      // For Const
+      else {
+
+         //Get CONST() and initialize new CFCONST. Thats it?
+
+         //NEED TO CODE CONST.
+
+         // If it is complement, return unary 
+         // else just return local variable
+         // if(isComp){
+         //    return new CFUnary(result);
+         // }
+
+         return null; // for compiler for now
+      
+      }
+                  
    }
 
    /*
@@ -499,6 +745,13 @@ public class CFExpParser{
    *************************************************************************/
    private CofinFin CONST() throws Exception{
       
+      //Check if in LAS
+      //Check if a compliment
+         // if yes lookahead,
+      //Check if in lbrace. lookahead
+      //Check if in rbrace.
+      //build and return CofinFin
+
       return null;
             
    }
@@ -564,9 +817,25 @@ public class CFExpParser{
 
    *************************************************************************/
    private Object[] TEST() throws Exception{
-      return null;
       
-   }
+      CFToken tk = lex.lookahead();
+
+		if(!CFToken.TESTSet.contains(tk.getTokenType())) {
+			getErrorMessage("TEST", CFToken.TESTSet, lex);
+		}
+
+      Object[] result = new Object[3];
+		Object[] suffix;
+      
+      // set the return variable with results of textSuffix
+      suffix = TESTSUFFIX(); 
+      result[0] = E(); // contains CFExp for E			
+      result[1] = suffix[0]; // Integer, the token type of the relational operator in <TEST SUFFIX>
+		result[2] = suffix[1]; // second expression of the test, which comes from <TEST SUFFIX>
+		
+		return result;
+   }      
+   
 
    /*
    
@@ -584,9 +853,22 @@ public class CFExpParser{
 
    *************************************************************************/
    private Object[] TESTSUFFIX() throws Exception{
- 
-      return null;
       
+      CFToken tk = lex.lookahead();
+      
+      if(! CFToken.TESTSUFFIXSet.contains(tk.getTokenType())){
+          throw new Exception(getErrorMessage("TESTSUFFIX", CFToken.TESTSUFFIXSet, lex));
+      }
+      
+      Object[] result = new Object[2];
+      result[0] = tk.getTokenType(); // set as the token type of the operator
+      
+      lex.consume();
+      
+      result[1] = E(); // rhs of expr
+
+      return result;
+
    }
 
    /*
@@ -656,8 +938,37 @@ public class CFExpParser{
 
    *************************************************************************/
    private Map<String, CFExp> BLIST() throws Exception{
-      return null;
       
+      CFToken tk = lex.lookahead();
+      Map <String, CFExp> result = new HashMap<String, CFExp>();
+
+      //In blistset
+      if(CFToken.BLISTSet.contains(tk.getTokenType())){
+         
+         // Loop for id equals <E> semi
+         // While 1
+         while(tk.getTokenType() == CFToken.ID) {
+            
+            lex.consume();
+      
+            //
+            tk = lex.lookahead();
+            // not 15
+            if(!(tk.getTokenType() == CFToken.EQUALS)){
+               throw new Exception (getErrorMessage("BLIST",CFToken.EQUALS, lex));
+            }
+
+            // Put substiution string in results map as <token string, E() substitution version>
+            result.put(lex.lookahead().getTokenString(), E().substitute(result));
+
+            tk = lex.lookahead(); // next loop
+         }
+     
+      }else{ // not in set
+         throw new Exception(getErrorMessage("BLIST", CFToken.BLISTSet, lex)); 
+      }
+
+      return result;     
    }
       
 }
