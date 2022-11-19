@@ -752,8 +752,39 @@ public class CFExpParser{
       //Check if in rbrace.
       //build and return CofinFin
 
-      return null;
-            
+      int tk = lex.lookahead().getTokenType();
+      boolean cmp = false;
+      CofinFin result;
+      //Check to see if it's in the lookahead set, otherwise throw exception
+      if(!CFToken.CONSTSet.contains(tk)) {
+         throw new Exception(getErrorMessage("CONST", CFToken.CONSTSet, lex));
+      }
+      //Check to see if it's a compliment, if yes then trip flag and consume
+      if(tk == CFToken.CMP) {
+         cmp = true;
+         lex.consume();
+         tk = lex.lookahead().getTokenType();
+      }
+      //Check for { equivalence, if it is consume otherwise throw exception
+      if(tk == CFToken.LEFTBRACE) {
+         lex.consume();
+         tk = lex.lookahead().getTokenType();
+         //Check to see if lookahead is int SETINTERIOR, if not throw exception, other wise build CofinFin
+         //object with cmp flag value and call to SETINTERIOR() then consume
+         if(!CFToken.SETINTERIORSet.contains(tk)) {
+            throw new Exception(getErrorMessage("CONST", CFToken.SETINTERIORSet, lex));
+         }
+         result = new CofinFin(cmp, SETINTERIOR());
+         lex.consume();
+         tk = lex.lookahead().getTokenType();
+         //Check for } equivalence, if not throw exception otherwise return the CofinFin object
+         if(!(tk == CFToken.RIGHTBRACE)) {
+            throw new Exception(getErrorMessage("CONST", 9, lex));
+         }
+      } else {
+            throw new Exception(getErrorMessage("CONST", 8, lex));
+      }
+      return result;
    }
 
    /*
@@ -776,6 +807,8 @@ public class CFExpParser{
 
    *************************************************************************/
    private int[] SETINTERIOR() throws Exception{
+
+      int[] result;
       return null;
       
    }
