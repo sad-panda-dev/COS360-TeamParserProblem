@@ -134,10 +134,18 @@ public class CFConditional extends CFExp{
    **********************************************************************/
  
 	public  CFExp substitute(Map<String, CFExp> bindings)throws Exception{
-      return null;
-      
-     
-      
+      if(bindings == null) {
+         throw new Exception("error in substite : bindings is null");
+      } 
+      else { 
+         // Replace with substitutes
+         leftTest = leftTest.substitute(bindings);
+         rightTest = rightTest.substitute(bindings);
+         trueChoice = trueChoice.substitute(bindings);
+         falseChoice = falseChoice.substitute(bindings);
+
+         return this;
+     }
    }
    /*
    
@@ -158,5 +166,3 @@ public class CFConditional extends CFExp{
       return deepCopy;
    }
 }
-
-
