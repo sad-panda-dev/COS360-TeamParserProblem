@@ -314,8 +314,9 @@ public class CFExpParser {
          // and whose right sub is temp,
          // and whose root is the operator token;
          while (tk.getTokenType() == CFToken.SYMMETRICDIFF) {
+            lex.consume();
             temp = A(); // get prior expression
-            lex.consume(); // Remove unwanted ws. No effect if tk is EOF.
+            //lex.consume(); // Remove unwanted ws. No effect if tk is EOF.
             tk = lex.lookahead(); // Next token without advancing
 
             result = new CFBinary(CFToken.SYMMETRICDIFF, result, temp);
@@ -350,8 +351,9 @@ public class CFExpParser {
          tk = lex.lookahead();
 
          while (tk.getTokenType() == CFToken.SETDIFF) { // 18
-            temp = B();
             lex.consume();
+            temp = B();
+            //lex.consume();
             tk = lex.lookahead();
             result = new CFBinary(CFToken.SETDIFF, result, temp);
          }
@@ -386,8 +388,9 @@ public class CFExpParser {
          tk = lex.lookahead();
 
          while (tk.getTokenType() == CFToken.UNION) { // 18
-            temp = C();
             lex.consume();
+            temp = C();
+            //lex.consume();
             tk = lex.lookahead();
             result = new CFBinary(CFToken.UNION, result, temp);
          }
@@ -426,7 +429,7 @@ public class CFExpParser {
 
          while (tk.getTokenType() == CFToken.INTERSECTION) { // 17
             temp = D();
-            lex.consume();
+            //lex.consume();
             tk = lex.lookahead();
             result = new CFBinary(CFToken.INTERSECTION, result, temp);
          }
@@ -521,7 +524,7 @@ public class CFExpParser {
          lex.consume();
          tk = lex.lookahead();
          Map<String, CFExp> bmap = BLIST(); // provides expr object modified by substitutions
-         tk = lex.lookahead();
+         //tk = lex.lookahead();
 
          // Set check for IN in D set
          if (!(tk.getTokenType() == CFToken.IN)) { // 20
@@ -587,6 +590,8 @@ public class CFExpParser {
       else if (tk.getTokenType() == CFToken.IF) {
 
          lex.consume();
+         Object subs[] = TEST();
+
          tk = lex.lookahead();
 
          // set check for THEN in D
@@ -613,7 +618,6 @@ public class CFExpParser {
          }
 
          lex.consume();
-         Object subs[] = TEST();
          CFConditional result = new CFConditional((Integer) subs[1], (CFExp) subs[0], (CFExp) subs[2], exp, exp1);
 
          // If it is complement, return unary
@@ -843,9 +847,10 @@ public class CFExpParser {
       Object[] result = new Object[3];
       Object[] suffix;
 
+      result[0] = E(); // contains CFExp for E BEFORE TESTSUFF()
+
       // set the return variable with results of textSuffix
       suffix = TESTSUFFIX();
-      result[0] = E(); // contains CFExp for E
       result[1] = suffix[0]; // Integer, the token type of the relational operator in <TEST SUFFIX>
       result[2] = suffix[1]; // second expression of the test, which comes from <TEST SUFFIX>
 
