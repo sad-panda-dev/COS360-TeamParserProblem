@@ -94,8 +94,12 @@ public class CFVar extends CFExp{
       } else if (bindings.containsKey(theVar)) {
          CFExp entry = bindings.get(theVar);
          if (entry != null) {
-            return deepCopy(entry);
+            return entry.deepCopy();
+         } else {
+            return this;
          }
+      } else {
+         return this;
       }
 	}
    
@@ -111,12 +115,12 @@ public class CFVar extends CFExp{
       CFExp deepCopy = null;
 
       try{
-         copy = new CFVar(theVar);
+         deepCopy = new CFVar(theVar);
       }
       catch(Exception e){
          e.printStackTrace();
       }
-      return theCopy;
+      return deepCopy;
    }
 	
 }
