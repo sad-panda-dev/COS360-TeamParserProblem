@@ -101,20 +101,37 @@ public class CFConditional extends CFExp{
          throw new Exception("error in eval : env is null");
       } else { 
          CofinFin confinFinLeft = leftTest.eval(env);
-         
          CofinFin confinFinRight = rightTest.eval(env);
          
-         if(confinFinLeft.equals(confinFinRight)) {
+         // if(confinFinLeft.equals(confinFinRight)) {
+         //    return trueChoice.eval(env);
+         // }
+         // else {
+         //    return falseChoice.eval(env);
+         // }
+
+         // Relop to determine comparison type (subset or equality),
+         // if given comparison is true, return truechoice,
+         // else, falsechoice.
+         // If neither comparison type, error
+         if(relop == CFToken.EQUALS){
+            if(confinFinLeft.equals(confinFinRight)){
                return trueChoice.eval(env);
-         }
-         else {
+            }else{
                return falseChoice.eval(env);
+            }
+         } else if(relop==CFToken.SUBSETOF){
+            if(confinFinLeft.isSubsetOf(confinFinRight)){
+               return trueChoice.eval(env);
+            }else{
+               return falseChoice.eval(env);
+            }
+         }else{
+            throw new Exception("error in eval : variable is not bound in the environment");
          }
+
       }   
    }
-   
-  
-            
 	
    /*
    
