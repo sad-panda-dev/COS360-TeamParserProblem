@@ -962,12 +962,13 @@ public class CFExpParser {
       CFToken tk = lex.lookahead();
       Map<String, CFExp> result = new HashMap<String, CFExp>();
 
-      // In blistset
+      // If in blistset
       if (CFToken.BLISTSet.contains(tk.getTokenType())) {
 
          // Loop for id equals <E> semi
          // While 1
          while (tk.getTokenType() == CFToken.ID) {
+            String s = lex.lookahead().getTokenString();
 
             lex.consume();
 
@@ -981,7 +982,8 @@ public class CFExpParser {
             // Put substiution string in results map as <token string, E() substitution
             // version>
             lex.consume(); //needed to consume1
-            result.put(lex.lookahead().getTokenString(), E().substitute(result));
+            result.put(s, E().substitute(result));
+            
             
             lex.consume(); //needed to consume2
             tk = lex.lookahead(); // next loop
