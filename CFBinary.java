@@ -90,28 +90,27 @@ public class CFBinary extends CFExp{
    **********************************************************************/
    
 	public CofinFin eval(Map<String, CofinFin> env) throws Exception{
+      
       if (env == null) {
          throw new Exception("error in eval : env is null");
       } else {
-         if (!env.containsValue(leftSub.eval(env))) {
-             throw new Exception("error in eval : variable " + leftSub.eval(env).toString() + " is not bound in the environment");
-         }
-         else if (!env.containsValue(rightSub.eval(env))) {
-             throw new Exception("error in eval : variable " + rightSub.eval(env).toString() + " is not bound in the environment");
-         }
 
          if (operator == CFToken.UNION) {
              return leftSub.eval(env).union(rightSub.eval(env));
          } 
+         
          else if (operator == CFToken.INTERSECTION) {
              return leftSub.eval(env).intersect(rightSub.eval(env));
          } 
+         
          else if (operator == CFToken.SETDIFF) {
              return leftSub.eval(env).setDifference(rightSub.eval(env));       
          } 
+         
          else if (operator == CFToken.SYMMETRICDIFF) {
              return leftSub.eval(env).symmetricDifference(rightSub.eval(env));   
          }
+         
          else {
              return null;
          }
@@ -168,12 +167,13 @@ public class CFBinary extends CFExp{
    *****************************************************************/
 	public  CFExp deepCopy(){
       CFExp copy = null;
+      
       try {
-           copy = new CFBinary(operator, leftSub, rightSub);
-      } 
-      catch (Exception e) {
-          e.printStackTrace();
+         copy = new CFBinary(operator, leftSub, rightSub);
+      } catch (Exception e) {
+         e.printStackTrace();
       }
+      
       return copy;
    }
  
