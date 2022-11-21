@@ -55,13 +55,27 @@ public class CFUnary extends CFExp{
       } 
      else {
          CofinFin tmp = subExp.eval(env);
+         boolean subset = false;
 
-          if (!env.containsValue(tmp)) {
-              throw new Exception("error in eval : variable " + tmp.toString() + " is not bound in the environment");
-          } 
-          else {
-              return tmp.complement();
-          }
+         for (CofinFin entry: env.values()) {
+            if (tmp.isSubsetOf(entry)) {
+               subset = true;
+            }
+         }
+
+         if (!subset) {
+            throw new Exception("error in eval : variable " + tmp.toString() + " is not bound in the environment");
+         }
+         
+         return tmp.complement();
+         
+
+          //if (!env.containsValue(tmp)) {
+          //    throw new Exception("error in eval : variable " + tmp.toString() + " is not bound in the environment");
+          //} 
+          //else {
+          //    return tmp.complement();
+          //}
       }
    }
 	
