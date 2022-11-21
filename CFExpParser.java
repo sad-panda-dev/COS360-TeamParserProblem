@@ -428,6 +428,7 @@ public class CFExpParser {
          tk = lex.lookahead();
 
          while (tk.getTokenType() == CFToken.INTERSECTION) { // 17
+            lex.consume(); //forgot to consume 3
             temp = D();
             //lex.consume();
             tk = lex.lookahead();
@@ -524,8 +525,8 @@ public class CFExpParser {
          lex.consume();
          tk = lex.lookahead();
          Map<String, CFExp> bmap = BLIST(); // provides expr object modified by substitutions
-         //tk = lex.lookahead();
-
+         
+         tk = lex.lookahead(); //uncommented. need
          // Set check for IN in D set
          if (!(tk.getTokenType() == CFToken.IN)) { // 20
             throw new Exception(getErrorMessage("D", CFToken.IN, lex));
@@ -979,8 +980,10 @@ public class CFExpParser {
 
             // Put substiution string in results map as <token string, E() substitution
             // version>
+            lex.consume(); //needed to consume1
             result.put(lex.lookahead().getTokenString(), E().substitute(result));
-
+            
+            lex.consume(); //needed to consume2
             tk = lex.lookahead(); // next loop
          }
 
