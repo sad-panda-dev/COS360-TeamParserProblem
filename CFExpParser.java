@@ -427,10 +427,10 @@ public class CFExpParser {
          CFExp temp;
          tk = lex.lookahead();
 
-         while (tk.getTokenType() == CFToken.INTERSECTION) { // 17
-            lex.consume(); //forgot to consume 3
+         while (tk.getTokenType() == CFToken.INTERSECTION) {
+            lex.consume();
             temp = D();
-            //lex.consume();
+
             tk = lex.lookahead();
             result = new CFBinary(CFToken.INTERSECTION, result, temp);
          }
@@ -520,20 +520,20 @@ public class CFExpParser {
       }
 
       // for LET IN ENDLET
-      if (tk.getTokenType() == CFToken.LET) { // 2
+      if (tk.getTokenType() == CFToken.LET) {
 
          lex.consume();
          tk = lex.lookahead();
          Map<String, CFExp> bmap = BLIST(); // provides expr object modified by substitutions
          
-         tk = lex.lookahead(); //uncommented. need
+         tk = lex.lookahead();
          // Set check for IN in D set
          if (!(tk.getTokenType() == CFToken.IN)) { // 20
             throw new Exception(getErrorMessage("D", CFToken.IN, lex));
          }
 
          lex.consume(); // ws
-         CFExp result = E().substitute(bmap); // // hold E expression for CFUn !!!! fix blist err
+         CFExp result = E().substitute(bmap);
          tk = lex.lookahead();
 
          // Set check ENDLET in D
@@ -552,7 +552,7 @@ public class CFExpParser {
 
       }
 
-      // LeftP E RightP
+      // Left Paren E Right Paren
       else if (tk.getTokenType() == CFToken.LEFTPAREN) {
 
          lex.consume();
@@ -587,7 +587,6 @@ public class CFExpParser {
          return result;
       }
 
-      // If then else endif
       else if (tk.getTokenType() == CFToken.IF) {
 
          lex.consume();
@@ -633,10 +632,9 @@ public class CFExpParser {
       // For Const
       else {
 
-         // Get CONST() and initialize new CFCONST. Thats it?
-
-         // If it is complement, return unary
-         // else just return local variable
+         /* Get CONST() and initialize new CFCONS
+            If it is complement, return unary
+            else just return local variable */
 
          CofinFin resultConst = CONST();
          CFConst result = new CFConst(resultConst);
@@ -691,10 +689,6 @@ public class CFExpParser {
             throw new Exception(getErrorMessage("CONST", CFToken.SETINTERIORSet, lex));
          }
 
-         // lex.consume();
-         // result = new CofinFin(cmp, SETINTERIOR()); //must be called before next
-         // lookahead above
-
          // Check for } equivalence, if not throw exception otherwise return the CofinFin
          // object
          if (!(tk.getTokenType() == CFToken.RIGHTBRACE)) {
@@ -738,7 +732,6 @@ public class CFExpParser {
       // If were dealing with a right brace this signifies empty string, so we return
       // empty array
       if (tk.getTokenType() == CFToken.RIGHTBRACE) {
-         // lex.consume();
          int[] result = new int[0];
          return result;
       }
@@ -755,7 +748,6 @@ public class CFExpParser {
       // for(int i = 0; i < result.length; i++) {
       for (int i = 0; i < nSetList.size(); i++) { // Get size of list not length
          result[i] = nSetList.get(i); // get val of local list, not call NSETIT again
-         // result[i] = NESETINTERIOR().get(i); // no list obj?
       }
 
       // lex.consume();
@@ -794,8 +786,10 @@ public class CFExpParser {
       // Else convert to sequence of nat
       // List to hold the sequence
       List<Integer> resultList = new LinkedList<Integer>();
+
       // Add the int
       resultList.add(Integer.parseInt(tk.getTokenString()));
+      
       lex.consume(); // skip to next token
       tk = lex.lookahead(); // return the token
 
