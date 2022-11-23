@@ -103,18 +103,10 @@ public class CFConditional extends CFExp{
          CofinFin confinFinLeft = leftTest.eval(env);
          CofinFin confinFinRight = rightTest.eval(env);
          
-         // if(confinFinLeft.equals(confinFinRight)) {
-         //    return trueChoice.eval(env);
-         // }
-         // else {
-         //    return falseChoice.eval(env);
-         // }
-
-         // Relop to determine comparison type (subset or equality),
-         // if given comparison is true, return truechoice,
-         // else, falsechoice.
-         // If neither comparison type, error
+       //determine comparison type (subset or equality)
          if(relop == CFToken.EQUALS){
+            //if given comparison is true, return truechoice
+        	// else, falsechoice.
             if(confinFinLeft.equals(confinFinRight)){
                return trueChoice.eval(env);
             }else{
@@ -126,7 +118,9 @@ public class CFConditional extends CFExp{
             }else{
                return falseChoice.eval(env);
             }
-         }else{
+         }
+         //If neither comparison type, error
+         else{
             throw new Exception("error in eval : variable is not bound in the environment");
          }
 

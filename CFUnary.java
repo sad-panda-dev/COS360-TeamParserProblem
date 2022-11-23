@@ -68,14 +68,7 @@ public class CFUnary extends CFExp{
          }
          
          return tmp.complement();
-         
-
-          //if (!env.containsValue(tmp)) {
-          //    throw new Exception("error in eval : variable " + tmp.toString() + " is not bound in the environment");
-          //} 
-          //else {
-          //    return tmp.complement();
-          //}
+        
       }
    }
 	

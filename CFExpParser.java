@@ -316,7 +316,6 @@ public class CFExpParser {
          while (tk.getTokenType() == CFToken.SYMMETRICDIFF) {
             lex.consume();
             temp = A(); // get prior expression
-            //lex.consume(); // Remove unwanted ws. No effect if tk is EOF.
             tk = lex.lookahead(); // Next token without advancing
 
             result = new CFBinary(CFToken.SYMMETRICDIFF, result, temp);
@@ -353,7 +352,6 @@ public class CFExpParser {
          while (tk.getTokenType() == CFToken.SETDIFF) { // 18
             lex.consume();
             temp = B();
-            //lex.consume();
             tk = lex.lookahead();
             result = new CFBinary(CFToken.SETDIFF, result, temp);
          }
@@ -390,7 +388,6 @@ public class CFExpParser {
          while (tk.getTokenType() == CFToken.UNION) { // 18
             lex.consume();
             temp = C();
-            //lex.consume();
             tk = lex.lookahead();
             result = new CFBinary(CFToken.UNION, result, temp);
          }
@@ -427,10 +424,9 @@ public class CFExpParser {
          CFExp temp;
          tk = lex.lookahead();
 
-         while (tk.getTokenType() == CFToken.INTERSECTION) { // 17
-            lex.consume(); //forgot to consume 3
+         while (tk.getTokenType() == CFToken.INTERSECTION) { 
+            lex.consume(); 
             temp = D();
-            //lex.consume();
             tk = lex.lookahead();
             result = new CFBinary(CFToken.INTERSECTION, result, temp);
          }
@@ -520,20 +516,20 @@ public class CFExpParser {
       }
 
       // for LET IN ENDLET
-      if (tk.getTokenType() == CFToken.LET) { // 2
+      if (tk.getTokenType() == CFToken.LET) { 
 
          lex.consume();
          tk = lex.lookahead();
          Map<String, CFExp> bmap = BLIST(); // provides expr object modified by substitutions
          
-         tk = lex.lookahead(); //uncommented. need
+         tk = lex.lookahead(); 
          // Set check for IN in D set
-         if (!(tk.getTokenType() == CFToken.IN)) { // 20
+         if (!(tk.getTokenType() == CFToken.IN)) {
             throw new Exception(getErrorMessage("D", CFToken.IN, lex));
          }
 
-         lex.consume(); // ws
-         CFExp result = E().substitute(bmap); // // hold E expression for CFUn !!!! fix blist err
+         lex.consume(); 
+         CFExp result = E().substitute(bmap);
          tk = lex.lookahead();
 
          // Set check ENDLET in D
@@ -541,7 +537,7 @@ public class CFExpParser {
             throw new Exception(getErrorMessage("D", CFToken.ENDLET, lex));
          }
 
-         lex.consume(); // ws
+         lex.consume(); 
 
          // If it is complement, return unary
          // else just return local variable
@@ -556,7 +552,7 @@ public class CFExpParser {
       else if (tk.getTokenType() == CFToken.LEFTPAREN) {
 
          lex.consume();
-         CFExp result = E(); // hold E expression for CFUn
+         CFExp result = E(); 
          tk = lex.lookahead();
 
          // Check RPREM in D set
@@ -610,7 +606,7 @@ public class CFExpParser {
          }
 
          lex.consume();
-         CFExp exp1 = E(); // hold E expression for CFConditional
+         CFExp exp1 = E(); 
          tk = lex.lookahead();
 
          // set check for ENDIF
@@ -632,12 +628,8 @@ public class CFExpParser {
 
       // For Const
       else {
-
-         // Get CONST() and initialize new CFCONST. Thats it?
-
          // If it is complement, return unary
          // else just return local variable
-
          CofinFin resultConst = CONST();
          CFConst result = new CFConst(resultConst);
 
@@ -691,10 +683,6 @@ public class CFExpParser {
             throw new Exception(getErrorMessage("CONST", CFToken.SETINTERIORSet, lex));
          }
 
-         // lex.consume();
-         // result = new CofinFin(cmp, SETINTERIOR()); //must be called before next
-         // lookahead above
-
          // Check for } equivalence, if not throw exception otherwise return the CofinFin
          // object
          if (!(tk.getTokenType() == CFToken.RIGHTBRACE)) {
@@ -738,27 +726,19 @@ public class CFExpParser {
       // If were dealing with a right brace this signifies empty string, so we return
       // empty array
       if (tk.getTokenType() == CFToken.RIGHTBRACE) {
-         // lex.consume();
          int[] result = new int[0];
          return result;
       }
-
-      // //Otherwise we create an int array of size[size of the list returned by
-      // NESETINTERIOR]
-      // int[] result = new int[NESETINTERIOR().size()];
 
       List<Integer> nSetList = NESETINTERIOR(); // Local list with NSETINT reuslts. TODO this method
       int[] result = new int[nSetList.size()]; // Array to be filled with nSetList ints
 
       // //Loop through List returned by NESETINTERIOR and add items to the array we
       // created and return it
-      // for(int i = 0; i < result.length; i++) {
-      for (int i = 0; i < nSetList.size(); i++) { // Get size of list not length
+      for (int i = 0; i < nSetList.size(); i++) { 
          result[i] = nSetList.get(i); // get val of local list, not call NSETIT again
-         // result[i] = NESETINTERIOR().get(i); // no list obj?
       }
 
-      // lex.consume();
       return result;
    }
 
@@ -972,20 +952,19 @@ public class CFExpParser {
 
             lex.consume();
 
-            //
             tk = lex.lookahead();
             // not 15
             if (!(tk.getTokenType() == CFToken.EQUALS)) {
                throw new Exception(getErrorMessage("BLIST", CFToken.EQUALS, lex));
             }
 
-            // Put substiution string in results map as <token string, E() substitution
+            // Put substitution string in results map as <token string, E() substitution
             // version>
-            lex.consume(); //needed to consume1
+            lex.consume(); 
             result.put(s, E().substitute(result));
             
             
-            lex.consume(); //needed to consume2
+            lex.consume(); 
             tk = lex.lookahead(); // next loop
          }
 

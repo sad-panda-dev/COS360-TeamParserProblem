@@ -90,10 +90,12 @@ public class CFBinary extends CFExp{
    **********************************************************************/
    
 	public CofinFin eval(Map<String, CofinFin> env) throws Exception{
-      
+      //check for null
       if (env == null) {
          throw new Exception("error in eval : env is null");
-      } else {
+      } 
+      //check and return expression
+      else {
 
          if (operator == CFToken.UNION) {
              return leftSub.eval(env).union(rightSub.eval(env));
